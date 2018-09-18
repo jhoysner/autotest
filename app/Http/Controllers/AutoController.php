@@ -13,8 +13,7 @@ class AutoController extends Controller
     public function index(Request $request)
     {
     	$data = Auto::orderBy('id','DESC')->paginate(12);
-        return view('auto.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('auto.index',compact('data'));
     }
 
     public function create()
@@ -56,11 +55,8 @@ class AutoController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
 
     	$update = Auto::find($id);
-
-        // dd($update);
         $update->nombre = $request->nombre;    
         $update->placa = $request->placa;    
         $update->color = $request->color;    
